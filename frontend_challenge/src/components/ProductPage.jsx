@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Col, Row } from "reactstrap";
 import Context from "../store"
 import ProductCard from "./ProductCard"
 
@@ -15,14 +16,15 @@ class ProductPage extends Component{
         let renderProducts = "No products"
 
         if(products && products.length > 0){
-            console.log("this is the poroducts: ", products)
+            products = products.sort((a, b) => b.price - a.price);
             renderProducts = products.map((product,index) => {
+                product.key = index
                 return <ProductCard key={index} product={product} addToCartHandler={(product)=>{this.addToCartHandler(product)}}/>
             })
         }
 
         return(
-            <div>
+            <div style={{display:"flex", justifyContent:"space-around", position:"relative"}}>
                 {renderProducts}
             </div>
         )
