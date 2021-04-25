@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
 import Context from "../store"
+import ShoppingCartCard from "./ShoppingCartCard"
 
 class ShoppingCartPage extends Component {
     static contextType = Context;
 
     addToCartHandler(product) {
-        console.log("hehhehehehe: ", product)
         let { setSelectedProduct } = this.context
         setSelectedProduct(product, "remove")
     }
@@ -31,38 +31,19 @@ class ShoppingCartPage extends Component {
 
             totalPrice = totalPrice + price
         })
-
-        productData = productData.map((data)=>{
-            let {name , image, currency, price, quantity} = data
-            price = parseFloat(price).toFixed(2)
-            return <tr>
-                <td>
-                    <button onClick={()=>{this.addToCartHandler(data)}}>X</button>
-                </td>
-                <td>
-                    <img src={image} width={"100px"}/>
-                </td>
-                <td>
-                    {name}
-                </td>
-                <td>
-                    {currency} {price}
-                </td>
-                <td>
-                    {quantity}
-                </td>
-                <td>
-                    {quantity * price}
-                </td>
-            </tr>
+        
+        productData = productData.map((product)=>{
+            product.price = parseFloat(product.price)
+            return <ShoppingCartCard product={product} addToCartHandler={()=>this.addToCartHandler(product)}/>
         })
 
         let shoppingGrid = selectedProduct.length > 0 ? <Fragment>
-            <table>
+            <table style={{width:"100%", marginLeft:"auto", marginRight:"auto"}}>
                 <thead>
                     <tr>
                         <th></th>
                         <th>Product</th>
+                        <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
@@ -70,14 +51,22 @@ class ShoppingCartPage extends Component {
                 </thead>
                 <tbody>
                     {productData}
-                    {totalPrice.toFixed(2)}
+                    <tr style={{marginBottom:"50ox"}}>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Total Price:</th>
+                        <th>SGD {totalPrice.toFixed(2)}</th>
+                    </tr>
                 </tbody>
             </table>
+            
         </Fragment> : null
 
         return <div>
-                <div>{shoppingCart}</div>
-                <div>{shoppingGrid}</div>
+                <div style={{textAlign:"center", margin:"40px 0"}}>{shoppingCart}</div>
+                <div style={{textAlign:"center"}}>{shoppingGrid}</div>
             </div>;
     }
 }

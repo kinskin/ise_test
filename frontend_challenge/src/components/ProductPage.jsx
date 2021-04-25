@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { Col, Row } from "reactstrap";
 import Context from "../store"
 import ProductCard from "./ProductCard"
 

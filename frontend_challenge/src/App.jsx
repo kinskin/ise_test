@@ -5,8 +5,6 @@ import { fetch_products } from "./api";
 import ProductPage from "./components/ProductPage"
 import ShoppingCartPage from "./components/ShoppingCartPage"
 
-import { Container } from 'reactstrap';
-
 class App extends Component{
     static contextType = Context;
 
@@ -22,11 +20,12 @@ class App extends Component{
 
     render(){
         return(
-            <div>
-                <Container>
+            <div className="container">
+                <div style={{padding:"25px"}}>
                     <ProductPage/>
+                    <div style={{width:"100%", border:"2px solid lightgrey", margin:"40px 0"}}></div>
                     <ShoppingCartPage/>
-                </Container>
+                </div>
             </div>
             
             

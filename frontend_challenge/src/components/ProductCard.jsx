@@ -16,7 +16,7 @@ const ProductCard = (props) => {
             classNaming = "imageLeftTop"
             style = {
                 position:"absolute",
-                left:300,
+                left:0,
                 top:0
             }
             break;
@@ -24,7 +24,7 @@ const ProductCard = (props) => {
             classNaming = "imageLeftBot"
             style = {
                 position:"absolute",
-                left:300,
+                left:0,
                 bottom:0
             }
             break;
@@ -32,7 +32,7 @@ const ProductCard = (props) => {
             classNaming = "imageRightTop"
             style = {
                 position:"absolute",
-                right:300,
+                right:0,
                 top:0
             }
             break;
@@ -40,7 +40,7 @@ const ProductCard = (props) => {
             classNaming = "imageLeftBot"
             style = {
                 position:"absolute",
-                right:300,
+                right:0,
                 bottom:0
 
             }
@@ -50,16 +50,14 @@ const ProductCard = (props) => {
     }
 
     let card = <Fragment>
-        <img src={image} style={{border:"10px solid lightgrey"}}/>
+        <img src={image} style={{border:"5px solid lightgrey"}}/>
         <div style={{display:"flex", justifyContent:"space-between"}}>
-            <div style={{alignSelf:"center"}}>
-                <h4>{name}</h4>
-            </div>
             <div style={{alignSelf:"center"}}> 
+                <h5>{name}</h5>
                 <span>{currency} {parseFloat(price).toFixed(2)}</span>
             </div>
             <div style={{alignSelf:"center"}}>
-                <AddToCartButton addToCartHandler={addDataToCart}/>
+                <AddToCartButton addToCartHandler={addDataToCart} mode={"add"}/>
             </div>
             
         </div>
